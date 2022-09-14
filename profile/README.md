@@ -1,6 +1,6 @@
 # Packet Batch
 ## Description
-A collection of high-performing applications which act as pen-testing/[DoS](https://www.cloudflare.com/learning/ddos/glossary/denial-of-service/) (Denial-of-Service) tools. Each tool utilizes a different network library/socket type for flexability with a goal to generate the most network traffic as possible depending on the configuration. I do **NOT** support using these tools maliciously. I made these tools for educational purposes and hope others may learn from them. Please use these tools **responsibly**.
+A collection of high-performing applications which act as pen-testing/[DoS](https://www.cloudflare.com/learning/ddos/glossary/denial-of-service/) (Denial-of-Service) tools. Each tool utilizes a different network library/socket type for flexibility with a goal to generate the most network traffic as possible depending on the configuration. I do **NOT** support using these tools maliciously. I made these tools for educational purposes and hope others may learn from them. Please use these tools **responsibly**.
 
 With that said, if these tools are launched from multiple sources to the same network/IP, it is considered a **D**DoS (Distributed Denial-of-Service) attack. You may customize a lot of the packet's contents (layer 2/3/4 headers and payload) and launch different types of attacks at once or in a chain via *sequences*. The following are also supported.
 
