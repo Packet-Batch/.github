@@ -30,7 +30,7 @@ As mentioned above, there are three applications for this project; Standard, AF_
 * [LibYAML](https://github.com/yaml/libyaml) - Used for parsing config files using the YAML syntax.
 
 ## YAML Configuration
-If you want to use Packet Batch for more than one sequence, you will need to specify sequences inside of a config file using the [YAML syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html). Please see the following for an explanation.
+If you want to use more than one sequence, you will need to specify sequences inside of a config file using the [YAML syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html). Please see the following for an explanation.
 
 ```yaml
 # The interface to send packets out of.
@@ -191,7 +191,7 @@ There are configuration examples [here](https://github.com/Packet-Batch/PB-Tests
 **NOTE** - The default config path is `/etc/pcktbatch/pcktbatch.yaml`. This may be changed via the `-c` and `--cfg` flags as explained under the Command Line Usage section below.
 
 ## Command Line Usage
-There are a number of command-line options available for Packet Batch. Each tool has additional command-line usage. With that said, you may override the first sequence through the command-line which allows you to use the tools more easily for single-sequence layouts.
+There are a number of command-line options available. Each tool has additional command-line usage. With that said, you may override the first sequence through the command-line which allows you to use the tools more easily for single-sequence layouts.
 
 ### Basic
 Basic command line usage may be found below.
