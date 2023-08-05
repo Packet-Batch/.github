@@ -1,32 +1,40 @@
 # Packet Batch
-## Description
-A collection of high-performing applications which act as pen-testing/[DoS](https://www.cloudflare.com/learning/ddos/glossary/denial-of-service/) (Denial-of-Service) tools. Each tool utilizes a different network library/socket type for flexibility with a goal to generate the most network traffic as possible depending on the configuration. I do **NOT** support using these tools maliciously. I made these tools for educational purposes and hope others may learn from them. Please use these tools **responsibly**.
+A collection of high-performance applications and tools designed for sending network packets. It serves two main purposes: penetration testing, which involves assessing network security by simulating various attacks like [Denial of Service](https://www.cloudflare.com/learning/ddos/glossary/denial-of-service/) (DoS); and network monitoring, which involves analyzing and inspecting network traffic.
 
-With that said, if these tools are launched from multiple sources to the same network/IP, it is considered a **D**DoS (Distributed Denial-of-Service) attack. You may customize a lot of the packet's contents (layer 2/3/4 headers and payload) and launch different types of attacks at once or in a chain via *sequences*. The following are also supported.
+Among these applications, two stand out as they utilize [AF_XDP](https://docs.kernel.org/networking/af_xdp.html) (eXpress Data Path) and the [DPDK](https://dpdk.org) (Data Plane Development Kit) technologies. AF_XDP is a fast and efficient network socket technology, while the DPDK is a kernel-bypass framework that allows for optimized packet processing on hardware.
+
+By leveraging AF_XDP and the DPDK, these special applications can generate a significant amount of network traffic, making the most out of the available hardware resources.
+
+With that said, if these applications are launched from multiple sources to the same network/IP address, it is considered a [**D**DoS](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/) attack (Distributed Denial of Service).
+
+These applications allow you to customize many of the packet's contents including layer 2/3/4 headers and payload data along with launch different types of attacks at once or in a chain via *sequences*. The following features are also supported.
 
 * Randomized source IPs via CIDR ranges.
-* Randomized payload length (within a minimum and maximum range).
-* UDP, TCP, and ICMP layer 4 protocols supported.
-* Optional layer 3 and 4 checksum calculation in the event you want the NIC's hardware to calculate checksums for the outgoing packets.
+* Randomized payload data with minimum and maximum length range.
+* UDP, TCP, and ICMP layer 4 protocols.
+* Optional layer 3 and 4 checksum calculation in the event you want the NIC's hardware to calculate checksums for generated outgoing packets.
 
-**NOTE** - This project was inspired by my previous Packet Sequence [project](https://github.com/gamemann/Packet-Sequence). Packet Sequence only supported `AF_PACKETv3` Linux sockets. However, in an effort to simplify code, I decided to make a new organization and project which'll support special versions for AF_XDP Linux sockets and the DPDK which should be **a lot** faster than the standard version with the exception of no TCP cooked sockets support.
+**NOTE** - This project was inspired by my previous Packet Sequence [project](https://github.com/gamemann/Packet-Sequence). Packet Sequence only supports `AF_PACKETv3` Linux sockets, though.
 
-## Packet Batch Applications/Versions
-There are three versions of Packet Batch, please read the following.
+### Disclaimer
+I do **NOT** support using these tools maliciously. I made these tools for educational purposes and hope others may learn from them. Please use these tools **responsibly**.
 
-* [Standard](https://github.com/Packet-Batch/PB-Standard) - Uses `AF_PACKETv3` sockets and supports TCP cookied sockets for easy TCP connection establishing.
-* [AF_XDP](https://github.com/Packet-Batch/PB-AF-XDP) - Uses `AF_XDP` sockets which is faster than `AF_PACKETv3`, but doesn't support TCP cooked sockets.
-* [DPDK](https://github.com/Packet-Batch/PB-DPDK) - Uses [the DPDK](https://dpdk.org) which is faster than all other versions, but since the DPDK is a kernel-bypass library, it is harder to setup and only supports certain hardware. The tool also doesn't support TCP cooked sockets.
+## Applications
+As mentioned above, there are three applications for this project; Standard, AF_XDP, and DPDK.
+
+* [Standard](https://github.com/Packet-Batch/PB-Standard) - Utilizes `AF_PACKETv3` Linux sockets and supports TCP cooked sockets for easy TCP connection establishing.
+* [AF_XDP](https://github.com/Packet-Batch/PB-AF-XDP) - Uses `AF_XDP` Linux sockets which is faster than `AF_PACKETv3`, but doesn't support TCP cooked sockets.
+* [DPDK](https://github.com/Packet-Batch/PB-DPDK) - Uses [the DPDK](https://dpdk.org) which is faster than other applications, but since the DPDK is a kernel-bypass library, it is harder to setup and only supports certain hardware. The tool also doesn't support TCP cooked sockets.
 
 ## Dependencies
 * [LibYAML](https://github.com/yaml/libyaml) - Used for parsing config files using the YAML syntax.
 
 ## YAML Configuration
-If you want to use Packet Batch for more than one sequence, you will need to specify sequences inside of a config file using the YAML syntax. Please see the following for an explanation.
+If you want to use Packet Batch for more than one sequence, you will need to specify sequences inside of a config file using the [YAML syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html). Please see the following for an explanation.
 
 ```yaml
-# The interface to use when sending packets.
-interface: NULL
+# The interface to send packets out of.
+interface: myinterface
 
 sequences:
     seq01:
@@ -62,10 +70,10 @@ sequences:
         # Ethernet header options.
         eth:
             # The source MAC address. If not set, the program will retrieve the MAC address of the interface we are binding to (the "interface" value).
-            srcmac: NULL
+            #srcmac: NULL
 
             # The destination MAC address. If not set, the program will retrieve the default gateway's MAC address.
-            dstmac: NULL
+            #dstmac: NULL
         
         # IP header options.
         ip:
@@ -76,10 +84,10 @@ sequences:
                 - 192.168.30.0/24
             
             # The source IPv4 address. If not set, you will need to specify source ranges in CIDR format like the above. If no source IP ranges are set, a warning will be outputted to `stderr` and 127.0.0.1 (localhost) will be used.
-            srcip: NULL
+            #srcip: NULL
 
             # The destination IPv4 address. If not set, the program will output an error. We require a value here. Otherwise, the program will shutdown.
-            dstip: NULL
+            #dstip: NULL
 
             # The IP protocol to use. At the moment, the only supported values are udp, tcp, and icmp.
             protocol: udp
@@ -175,10 +183,10 @@ sequences:
             isstring: false
 
             # If a string, will set the payload to exactly this value. Each byte should be in hexadecimal and separated by a space. For example: "FF FF FF FF 59" (5 bytes of payload data).
-            exact: NULL
+            #exact: NULL
 ```
 
-There are YAML config examples for Packet Batch [here](https://github.com/Packet-Batch/PB-Tests).
+There are configuration examples [here](https://github.com/Packet-Batch/PB-Tests).
 
 **NOTE** - The default config path is `/etc/pcktbatch/pcktbatch.yaml`. This may be changed via the `-c` and `--cfg` flags as explained under the Command Line Usage section below.
 
