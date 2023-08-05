@@ -5,7 +5,7 @@ Among these applications, two stand out as they utilize [AF_XDP](https://docs.ke
 
 By leveraging AF_XDP and the DPDK, these special applications can generate a significant amount of network traffic, making the most out of the available hardware resources.
 
-With that said, if these applications are launched from multiple sources to the same network/IP address, it is considered a [**D**DoS](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/) attack (Distributed Denial of Service).
+With that said, if these applications are launched from multiple sources to the same network/IP address, it is considered a [**Distributed** Denial of Service](https://www.cloudflare.com/learning/ddos/what-is-a-ddos-attack/) (DDoS) attack.
 
 These applications allow you to customize many of the packet's contents including layer 2/3/4 headers and payload data along with launch different types of attacks at once or in a chain via *sequences*. The following features are also supported.
 
