@@ -1,7 +1,7 @@
 # Packet Batch
 A collection of high-performance applications and tools designed for sending network packets. It serves two main purposes: penetration testing, which involves assessing network security by simulating various attacks like [Denial of Service](https://www.cloudflare.com/learning/ddos/glossary/denial-of-service/) (DoS); and network monitoring, which involves analyzing and inspecting network traffic.
 
-Among these applications, two stand out as they utilize [AF_XDP](https://docs.kernel.org/networking/af_xdp.html) (eXpress Data Path) and the [DPDK](https://dpdk.org) (Data Plane Development Kit) technologies. AF_XDP is a fast and efficient network socket technology, while the DPDK is a kernel-bypass framework that allows for optimized packet processing on hardware.
+Among these applications, two stand out as they utilize [AF_XDP](https://docs.kernel.org/networking/af_xdp.html) (eXpress Data Path) and the [DPDK](https://dpdk.org) (Data Plane Development Kit) technologies. AF_XDP is a fast and efficient network socket technology, while the DPDK is a kernel-bypass framework that allows for optimized packet processing in the user space.
 
 By leveraging AF_XDP and the DPDK, these special applications can generate a significant amount of network traffic, making the most out of the available hardware resources.
 
@@ -30,7 +30,7 @@ As mentioned above, there are three applications for this project; Standard, AF_
 * [LibYAML](https://github.com/yaml/libyaml) - Used for parsing config files using the YAML syntax.
 
 ## YAML Configuration
-If you want to use Packet Batch for more than one sequence, you will need to specify sequences inside of a config file using the [YAML syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html). Please see the following for an explanation.
+If you want to use more than one sequence, you will need to specify sequences inside of a config file using the [YAML syntax](https://docs.ansible.com/ansible/latest/reference_appendices/YAMLSyntax.html). Please see the following for an explanation.
 
 ```yaml
 # The interface to send packets out of.
@@ -191,7 +191,7 @@ There are configuration examples [here](https://github.com/Packet-Batch/PB-Tests
 **NOTE** - The default config path is `/etc/pcktbatch/pcktbatch.yaml`. This may be changed via the `-c` and `--cfg` flags as explained under the Command Line Usage section below.
 
 ## Command Line Usage
-There are a number of command-line options available for Packet Batch. Each tool has additional command-line usage. With that said, you may override the first sequence through the command-line which allows you to use the tools more easily for single-sequence layouts.
+There are a number of command-line options available. Each tool has additional command-line usage. With that said, you may override the first sequence through the command-line which allows you to use the tools more easily for single-sequence layouts.
 
 ### Basic
 Basic command line usage may be found below.
