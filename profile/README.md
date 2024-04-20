@@ -1,4 +1,3 @@
-# Packet Batch
 A collection of high-performance applications and tools designed for sending network packets. It serves two main purposes: penetration testing, which involves assessing network security by simulating various attacks like [Denial of Service](https://www.cloudflare.com/learning/ddos/glossary/denial-of-service/) (DoS); and network monitoring, which involves analyzing and inspecting network traffic.
 
 Among these applications, two stand out as they utilize [AF_XDP](https://docs.kernel.org/networking/af_xdp.html) (eXpress Data Path) and the [DPDK](https://dpdk.org) (Data Plane Development Kit) technologies. AF_XDP is a fast and efficient network socket technology, while the DPDK is a kernel-bypass framework that allows for optimized packet processing in the user space.
