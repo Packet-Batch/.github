@@ -19,5 +19,12 @@ As mentioned above, there are three applications for this project; Standard, AF_
 * [AF_XDP](https://github.com/Packet-Batch/PB-AF-XDP) - Uses `AF_XDP` Linux sockets which is faster than `AF_PACKETv3`, but doesn't support TCP cooked sockets.
 * [DPDK](https://github.com/Packet-Batch/PB-DPDK) - Uses [the DPDK](https://dpdk.org) which is faster than other applications, but since the DPDK is a kernel-bypass library, it is harder to setup and only supports certain hardware. The tool also doesn't support TCP cooked sockets.
 
+## Alternatives
+If Packet Batch does not meet your expectations/needs, there are other tools that may accomplish what you're looking for, so I wanted to list them here. I will build this list as time goes on and if you have any suggestions, please feel free to reach out to me!
+
+* [Pcktgen-DPDK](https://github.com/pktgen/Pktgen-DPDK)
+* [go-pktgen](https://github.com/atoonk/go-pktgen)
+* [netsniff-ng](https://github.com/netsniff-ng/netsniff-ng)
+
 ## Credits
 * [Christian Deacon](https://github.com/gamemann)
