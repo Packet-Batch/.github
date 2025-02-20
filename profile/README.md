@@ -10,7 +10,8 @@ These applications allow you to customize many of the packet's contents includin
 
 **NOTE** - This project was inspired by my previous Packet Sequence [project](https://github.com/gamemann/Packet-Sequence). Packet Sequence only supports `AF_PACKETv3` Linux sockets, though.
 
-**NOTE 5-4-24** - Recently, I've been working on overhauling Packet Batch as a whole which includes a major change in the configuration layout (switching from YAML to JSON syntax). However, recent changes have not been applied to the Standard and the DPDK versions. This is because the AF_XDP version is the most popular (assuming due to simplicity/performance) and I want to focus on one version until my ideas/overhaul are fully implemented. Once things are stable, I will implement changes to the other two versions of Packet Batch. I've been extremely busy with work and life, so I haven't been able to implement changes in a timely manner and I apologize for that. My goal is to make Packet Batch capable of sending many packets every second that would make it better for penetration testing against firewalls and such (something I've been doing a lot myself against my own firewalls). Thank you for understanding!
+## 2025 Revamp
+A revamp is in-progress that'll combine all packet processing technologies listed below into one main program. At this time, the revamp is not completed, but you may notice some repositories are marked as **old** (these are mostly unsupported).
 
 ## Applications
 As mentioned above, there are three applications for this project; Standard, AF_XDP, and DPDK.
