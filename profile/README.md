@@ -13,6 +13,8 @@ These applications allow you to customize many of the packet's contents includin
 ## 2025 Revamp
 A revamp is in-progress that'll combine all packet processing technologies listed below into one main program. At this time, the revamp is not completed, but you may notice some repositories are marked as **old** (these are mostly unsupported).
 
+Development of this revamp can be found in [this](https://github.com/Packet-Batch/Program/tree/20250218-rewrite) branch! Each packet processing tech will be stored as separate repositories in Packet Batch's [organization](https://github.com/Packet-Batch) prefixed with `tech-`.
+
 ## Applications
 As mentioned above, there are three applications for this project; Standard, AF_XDP, and DPDK.
 
